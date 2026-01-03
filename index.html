@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankita Das</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="modelImages/model1.JPG" type="image/x-icon">
+    <!-- Updated Google Fonts with modern unique fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Added Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Added AOS (Animate On Scroll) library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Custom Styles */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Updated heading font to Cinzel */
+        .heading-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Added Bebas Neue for accent text */
+        .accent-font {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        /* Gradient Background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(16, 0, 43, 0.9) 0%, rgba(73, 19, 115, 0.8) 50%, rgba(161, 41, 115, 0.7) 100%),
+                url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&h=1080&fit=crop') center/cover;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Added new pulse animation */
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(250, 204, 21, 0.9), 0 0 60px rgba(236, 72, 153, 0.5);
+            }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Added slide-in animation */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        /* Added rotate animation */
+        @keyframes rotate-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotate-slow {
+            animation: rotate-slow 20s linear infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a0028;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #c94b4b, #4b134f);
+            border-radius: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        /* Navbar background on scroll */
+        .navbar-scrolled {
+            background: rgba(16, 0, 40, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Swiper custom styles */
+        .swiper {
+            width: 100vw;
+            padding: 50px 0;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: linear-gradient(to right, #fbbf24, #ec4899);
+        }
+
+        /* Custom card hover effects */
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(236, 72, 153, 0.4);
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white w-full overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <nav style=" background: rgba(16, 0, 40, 0.95);" id="navbar"
+        class="fixed w-full top-0   z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold heading-font">
+                <span class="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                    Ankita Das
+                </span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex space-x-8 text-sm font-semibold">
+                <li><a href="#hero" class="hover:text-yellow-400 transition-colors duration-300">Home</a></li>
+                <li><a href="#about" class="hover:text-yellow-400 transition-colors duration-300">About</a></li>
+                <li><a href="#filmography" class="hover:text-yellow-400 transition-colors duration-300">Filmography</a>
+                </li>
+                <li><a href="#portfolio" class="hover:text-yellow-400 transition-colors duration-300">Gallery</a></li>
+                <li><a href="#awards" class="hover:text-yellow-400 transition-colors duration-300">Awards</a></li>
+                <li><a href="#contact" class="hover:text-yellow-400 transition-colors duration-300">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden fixed top-[90px] left-0 w-full h-[calc(100vh-90px)]
+            bg-gradient-to-br from-purple-900 to-black overflow-y-auto z-40">
+            <ul class="flex flex-col space-y-4 px-4 py-6 text-center">
+                <li><a href="#hero" class="mobile-menu-link block py-2 hover:text-yellow-400 transition-colors">Home</a>
+                </li>
+                <li><a href="#about"
+                        class="mobile-menu-link block py-2 hover:text-yellow-400 transition-colors">About</a></li>
+                <li><a href="#filmography"
+                        class="mobile-menu-link block py-2 hover:text-yellow-400 transition-colors">Filmography</a></li>
+                <li><a href="#portfolio"
+                        class="mobile-menu-link block py-2 hover:text-yellow-400 transition-colors">Gallery</a></li>
+                <li><a href="#awards"
+                        class="mobile-menu-link block py-2 hover:text-yellow-400 transition-colors">Awards</a></li>
+                <li><a href="#contact"
+                        class="mobile-menu-link block py-2 hover:text-yellow-400 transition-colors">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen w-full overflow-hidden flex items-center justify-center">
+
+        <!-- 🔥 BACKGROUND IMAGE SWIPER -->
+        <div class="absolute inset-0 z-0">
+            <div class="swiper heroSwiper w-full ">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="modelImages/model1.JPG" class="w-full h-screen object-cover object-top" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="modelImages/model2.JPG" class="w-full h-screen object-cover object-center" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="modelImages/model3.JPG" class="w-full h-screen object-cover object-top" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="modelImages/display2.JPG" class="w-full h-screen object-cover object-top" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- DARK OVERLAY -->
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <!-- 🌟 CONTENT OVER IMAGE -->
+        <div class="relative hidden z-10 text-center px-4">
+
+            <h1
+                class="text-4xl md:text-6xl lg:text-7xl font-black mb-8 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                Ankita Das
+            </h1>
+
+            <!-- 🔘 BUTTONS -->
+            <div class="flex  flex-wrap justify-center gap-4">
+                <a href="#contact"
+                    class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-110 transition-all">
+                    <i class="fas fa-star mr-2"></i>Book Now
+                </a>
+
+                <a href="#portfolio"
+                    class="border-2 border-pink-500 text-pink-500 px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-500 hover:text-white hover:scale-110 transition-all">
+                    <i class="fas fa-play mr-2"></i>View Work
+                </a>
+
+                <a href="#about"
+                    class="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-110 transition-all">
+                    <i class="fas fa-heart mr-2"></i>Follow
+                </a>
+            </div>
+        </div>
+
+        <!-- ⬇ SCROLL ICON -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+            <i class="fas fa-chevron-down text-3xl text-yellow-400"></i>
+        </div>
+
+    </section>
+
+
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gradient-to-br from-gray-900 via-purple-900 to-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-6xl font-bold heading-font text-center mb-16" data-aos="fade-down">
+                <span class="bg-gradient-to-r from-yellow-400 to-pink-500 bg-clip-text text-transparent">
+                    About Me
+                </span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                <div class="order-1 md:order-2" data-aos="fade-left" data-aos-delay="200">
+                    <img src="modelImages/model12.JPG" alt="Ankita Das"
+                        class="rounded-3xl shadow-2xl border-4 border-yellow-400 w-full h-auto transform hover:scale-105 transition-transform duration-500">
+                </div>
+
+                <div class="order-2 md:order-1" data-aos="fade-right" data-aos-delay="200">
+                    <h3 class="text-3xl font-bold mb-6 text-yellow-400 heading-font">The Journey of Excellence</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4 text-justify">
+                        Ankita Dash is a talented actress who predominantly works in regional cinema. She rose to
+                        prominence after winning the
+                        popular reality show <span class="text-yellow-400 font-semibold">“Mitha Mitha Jodi”</span> on
+                        Colors Odia TV. The show,
+                        a unique blend of acting and dance, was created to discover fresh talent and select the lead
+                        pair for the Odia film
+                        <span class="text-yellow-400 font-semibold">Mitha Mitha</span>.
+                    </p>
+
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4 text-justify">
+                        With her expressive performances, graceful dance skills, and natural screen presence, Ankita
+                        Dash emerged as the
+                        winner of the reality show, earning her debut as the female lead in the film <span
+                            class="font-semibold">Mitha Mitha</span>.
+                        Since then, she has appeared in several Odia films as a leading actress, steadily building a
+                        strong connection with
+                        audiences.
+                    </p>
+
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6 text-justify">
+                        Ankita Dash received widespread appreciation for her powerful female-centric role in the 2025
+                        film
+                        <span class="text-yellow-400 font-semibold">Vaastav</span>, which was both critically acclaimed
+                        and highly appreciated
+                        by viewers. Her versatile performance and effortless screen presence further established her as
+                        one of the most
+                        promising actresses in the industry.
+                    </p>
+
+
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-semibold hover:scale-110 transition-transform">Acting</span>
+                        <span
+                            class="bg-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:scale-110 transition-transform">Modeling</span>
+                        <span
+                            class="bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:scale-110 transition-transform">Fashion</span>
+                        <span
+                            class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:scale-110 transition-transform">Philanthropy</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Filmography -->
+    <section id="filmography" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+
+            <!-- Heading -->
+            <h2 class="text-4xl md:text-6xl font-bold heading-font text-center mb-4">
+                <span class="bg-gradient-to-r from-yellow-400 to-purple-600 bg-clip-text text-transparent">
+                    Filmography
+                </span>
+            </h2>
+            <p class="text-center text-gray-400 mb-10 text-lg accent-font">
+                CINEMATIC JOURNEY
+            </p>
+
+            <!-- Cards Wrapper -->
+            <div class="flex md:grid
+                   md:grid-cols-2 lg:grid-cols-3
+                   gap-6
+                   overflow-x-auto md:overflow-visible
+                   scroll-smooth
+                   py-10 ">
+
+                <!-- Card -->
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-purple-900 to-black p-4 rounded-2xl border-2 border-yellow-400 hover-lift">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrMeFGnHbDTm8ucLyIHymKq_peR8s0uwxC_Q&s"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4" />
+                    <h3 class="text-xl font-bold text-white heading-font">Vaastav</h3>
+                    <p class="text-pink-400 accent-font font-semibold">Action • Drama</p>
+                </div>
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-pink-900 to-black p-4 rounded-2xl border-2 border-pink-500 hover-lift">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeuYQqWGY8Kbfuj_Tmapct2DxMRM0ljvjLTA&s"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Mitha Mitha</h3>
+                    <p class="text-purple-400 accent-font font-semibold">Romantic • Musical</p>
+                </div>
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-blue-900 to-black p-4 rounded-2xl border-2 border-blue-500 hover-lift">
+                    <img src="https://i.ytimg.com/vi/_LPEIDdh81E/maxresdefault.jpg"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Mana Khali Tate Chahen</h3>
+                    <p class="text-blue-400 accent-font font-semibold">Romance • Drama</p>
+                </div>
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-green-900 to-black p-4 rounded-2xl border-2 border-green-500 hover-lift">
+                    <img src="https://i.ytimg.com/vi/ws_Fpqmbtvc/maxresdefault.jpg"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Ishq Wala Love</h3>
+                    <p class="text-green-400 accent-font font-semibold">Romance</p>
+                </div>
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-purple-800 to-black p-4 rounded-2xl border-2 border-purple-500 hover-lift">
+                    <img src="https://i.ytimg.com/vi/qT41LYDl4eA/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AHUBoAC4AOKAgwIABABGGUgUihHMA8=&rs=AOn4CLBE4eWF8LLxu5jwRETUgRthu5chDQ"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Tume Mo Sindura</h3>
+                    <p class="text-purple-400 accent-font font-semibold">Family • Drama</p>
+                </div>
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-red-700 to-black p-4 rounded-2xl border-2 border-red-400 hover-lift">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTusNRvfSI7AiwXTxo-ND17yhERIBSPyn5JFA&s"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Premi Awara</h3>
+                    <p class="text-red-400 accent-font font-semibold">Romantic • Comedy</p>
+                </div>
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-blue-700 to-black p-4 rounded-2xl border-2 border-blue-400 hover-lift">
+                    <img src="https://i.ytimg.com/vi/Wb6pF54UaCo/maxresdefault.jpg"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Hello Ravan</h3>
+                    <p class="text-blue-300 accent-font font-semibold">Action • Comedy</p>
+                </div>
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-yellow-700 to-black p-4 rounded-2xl border-2 border-yellow-400 hover-lift">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa-JXbhSBJFO1AYLAgCUiocMJTZzI4MvOb0w&s"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Mo Khani Re Tori Naa</h3>
+                    <p class="text-yellow-400 accent-font font-semibold">Drama • Romance • Musical</p>
+                </div>
+
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-gray-800 to-black p-4 rounded-2xl border-2 border-gray-600 hover-lift">
+                    <img src="https://assets-in.bmscdn.com/discovery-catalog/events/et00408690-rzdfhyrpnh-landscape.jpg"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Khoka Bhai Tama Pain</h3>
+                    <p class="text-gray-400 accent-font font-semibold">Action • Drama</p>
+                </div>
+
+                <div
+                    class="min-w-[260px] h-[300px] lg:h-[350px] bg-gradient-to-br from-red-800 to-black p-4 rounded-2xl border-2 border-red-600 hover-lift">
+                    <img src="https://img.youtube.com/vi/_-oHCrk70dM/0.jpg"
+                        class="w-full h-36 lg:h-52 object-cover rounded-xl mb-4">
+                    <h3 class="text-xl font-bold text-white heading-font">Racket</h3>
+                    <p class="text-red-400 accent-font font-semibold">Crime • Action</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio / Gallery Section with Swiper.js -->
+    <section id="portfolio" class="py-20 bg-gradient-to-br  from-purple-900 via-pink-900 to-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-6xl font-bold heading-font text-center mb-6" data-aos="fade-down">
+                <span class="bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                    Portfolio Gallery
+                </span>
+            </h2>
+            <p class="text-center text-gray-400 mb-16 text-lg accent-font">SWIPE TO EXPLORE</p>
+
+            <!-- Swiper Container -->
+            <div class="swiper gallerySwiper max-w-7xl mx-auto">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model14.JPG" alt="Fashion Shoot"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Fashion Week 2024</h4>
+                                    <p class="text-gray-300">Paris Fashion Week</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model5.JPG" alt="Movie Premiere"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Red Carpet</h4>
+                                    <p class="text-gray-300">Award Show Premiere</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model6.JPG" alt="Editorial Shoot"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Vogue Editorial</h4>
+                                    <p class="text-gray-300">Magazine Cover</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model7.JPG" alt="Campaign"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Brand Campaign</h4>
+                                    <p class="text-gray-300">Luxury Brand Ambassador</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model8.JPG" alt="Portrait"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Studio Portrait</h4>
+                                    <p class="text-gray-300">Professional Photoshoot</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model9.JPG" alt="Behind the Scenes"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Behind the Scenes</h4>
+                                    <p class="text-gray-300">Movie Set</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model10.JPEG" alt="Behind the Scenes"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Behind the Scenes</h4>
+                                    <p class="text-gray-300">Movie Set</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model11.JPG" alt="Behind the Scenes"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Behind the Scenes</h4>
+                                    <p class="text-gray-300">Movie Set</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model2.JPG" alt="Behind the Scenes"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Behind the Scenes</h4>
+                                    <p class="text-gray-300">Movie Set</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model13.JPG" alt="Behind the Scenes"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Behind the Scenes</h4>
+                                    <p class="text-gray-300">Movie Set</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 11 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model14.JPG" alt="Behind the Scenes"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Behind the Scenes</h4>
+                                    <p class="text-gray-300">Movie Set</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 12 -->
+                    <div class="swiper-slide">
+                        <div
+                            class="gallery-item group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl max-w-md mx-auto">
+                            <img src="modelImages/model3.JPG" alt="Behind the Scenes"
+                                class="w-full h-96 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 opacity-0 p-6">
+                                    <h4 class="text-white text-2xl font-bold mb-2 heading-font">Behind the Scenes</h4>
+                                    <p class="text-gray-300">Movie Set</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swiper Pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- Swiper Navigation -->
+                <div class="swiper-button-next pr-5"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Gallery -->
+    <div id="galleryModal" class="modal">
+        <span id="closeModal"
+            class="absolute top-8 right-8 text-white text-5xl font-bold cursor-pointer hover:text-yellow-400 transition-colors z-10">
+            &times;
+        </span>
+        <img id="modalImage" class="modal-content" src="/placeholder.svg" alt="Gallery Image">
+    </div>
+
+    <!-- NEW SECTION: Podcast and Interviews -->
+    <section hidden id="podcasts" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-6xl font-bold heading-font text-center mb-6" data-aos="zoom-in">
+                <span class="bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">
+                    Podcasts & Interviews
+                </span>
+            </h2>
+            <p class="text-center text-gray-400 mb-16 text-lg accent-font">CONVERSATIONS THAT MATTER</p>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Podcast 1 -->
+                <div class="bg-gradient-to-br from-red-900 to-black p-6 rounded-2xl border-2 border-red-500 hover-lift"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-red-500 p-4 rounded-xl">
+                            <i class="fas fa-microphone text-3xl text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2 heading-font">The Hollywood Journey</h3>
+                            <p class="text-red-400 font-semibold mb-2 text-sm accent-font">The Joe Rogan Experience</p>
+                            <p class="text-gray-400 text-sm mb-3">Deep dive into Stella's rise to stardom and the
+                                challenges she faced along the way.</p>
+                            <a href="#"
+                                class="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-semibold text-sm">
+                                <i class="fas fa-play-circle"></i> Listen Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Podcast 2 -->
+                <div class="bg-gradient-to-br from-pink-900 to-black p-6 rounded-2xl border-2 border-pink-500 hover-lift"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-pink-500 p-4 rounded-xl">
+                            <i class="fas fa-podcast text-3xl text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2 heading-font">Behind the Scenes</h3>
+                            <p class="text-pink-400 font-semibold mb-2 text-sm accent-font">Armchair Expert</p>
+                            <p class="text-gray-400 text-sm mb-3">Stella shares untold stories from movie sets and her
+                                creative process.</p>
+                            <a href="#"
+                                class="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-semibold text-sm">
+                                <i class="fas fa-play-circle"></i> Listen Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interview 1 -->
+                <div class="bg-gradient-to-br from-purple-900 to-black p-6 rounded-2xl border-2 border-purple-500 hover-lift"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-purple-500 p-4 rounded-xl">
+                            <i class="fas fa-video text-3xl text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2 heading-font">Vogue's 73 Questions</h3>
+                            <p class="text-purple-400 font-semibold mb-2 text-sm accent-font">Vogue Magazine</p>
+                            <p class="text-gray-400 text-sm mb-3">Rapid-fire questions revealing Stella's personality,
+                                passions, and quirks.</p>
+                            <a href="#"
+                                class="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-semibold text-sm">
+                                <i class="fas fa-play-circle"></i> Watch Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interview 2 -->
+                <div class="bg-gradient-to-br from-yellow-900 to-black p-6 rounded-2xl border-2 border-yellow-500 hover-lift"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-yellow-500 p-4 rounded-xl">
+                            <i class="fas fa-tv text-3xl text-black"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-white mb-2 heading-font">The Tonight Show</h3>
+                            <p class="text-yellow-400 font-semibold mb-2 text-sm accent-font">Jimmy Fallon</p>
+                            <p class="text-gray-400 text-sm mb-3">Hilarious moments and candid conversations on one of
+                                TV's biggest talk shows.</p>
+                            <a href="#"
+                                class="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-semibold text-sm">
+                                <i class="fas fa-play-circle"></i> Watch Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Music Videos -->
+    <section id="music-videos" class="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-black">
+        <div class="container mx-auto px-4">
+
+            <!-- Heading -->
+            <h2 class="text-4xl md:text-6xl font-bold heading-font text-center mb-4">
+                <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    Music Videos
+                </span>
+            </h2>
+            <p class="text-center text-gray-400 mb-12 text-lg accent-font">
+                VISUAL STORYTELLING
+            </p>
+
+            <!-- Swiper -->
+            <!-- Swiper -->
+            <div class="swiper musicSwiper max-w-6xl mx-auto">
+                <div class="swiper-wrapper">
+
+                    <!-- 1 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/tu kaha panjuri.jpg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Tu opacity-0 Kaha Panjuri Ra</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/mo surila sayeri.jpg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Mo opacity-0 Surila Shyari Tu</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/aakhire kichi kahilu.jpg"
+                                    class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Ak opacity-0hi Re Kichi Kahilu</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/tu suna tu hira.jpeg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Tu opacity-0 Suna Tu Hira</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/premara gulam.jpg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Pr opacity-0ema Ra Gulam</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/madhu hanshi.jpg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Ma opacity-0dhuhansi</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/bangiri nani.jpg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Ba opacity-0ngri Nani</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/siade nuhe beby.jpg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Se opacity-0ade Nuha Baby</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/tu ki hasa hasilu.jpg"
+                                    class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Tu opacity-0 Ki Hasa Hasilu</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/maar pichkari.jpeg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Ma opacity-0ar Pichkari</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 11 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/shiyaan.jpeg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Or opacity-0e Saiyaan</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/mana khali tate.jpeg" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Mo opacity-0nday Ru Sunday</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 13 -->
+                    <div class="swiper-slide">
+                        <div class="group relative rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="aspect-[16/9]">
+                                <img src="images/dhana dhana kahi.jpeg"
+                                    class="w-full h-full object-cover object-center">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black  via-black/60 to-transparent flex items-end p-6">
+                                <h3 class="text-2xl font-bold text-white">Dh opacity-0ana Dhana Kahi</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <div class="swiper-pagination music-pagination"></div>
+                <div class="swiper-button-next music-next"></div>
+                <div class="swiper-button-prev music-prev"></div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Achievements / Awards Section - Enhanced -->
+    <section id="awards" class="py-20 bg-gradient-to-br from-purple-900 via-pink-900 to-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-6xl font-bold heading-font text-center mb-16" data-aos="fade-down">
+                <span class="bg-gradient-to-r from-yellow-400 to-pink-500 bg-clip-text text-transparent">
+                    Awards & Achievements
+                </span>
+            </h2>
+
+            <!-- Stats Counter -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 max-w-6xl mx-auto">
+                <div class="text-center bg-black bg-opacity-50 p-8 rounded-2xl backdrop-blur-lg border border-yellow-400 hover-lift"
+                    data-aos="flip-up" data-aos-delay="100">
+                    <i class="fas fa-trophy text-5xl text-yellow-400 mb-4"></i>
+                    <div class="text-5xl font-bold text-white mb-2 counter" data-target="15">15</div>
+                    <div class="text-gray-300 font-semibold accent-font">Major Awards</div>
+                </div>
+
+                <div class="text-center bg-black bg-opacity-50 p-8 rounded-2xl backdrop-blur-lg border border-pink-500 hover-lift"
+                    data-aos="flip-up" data-aos-delay="200">
+                    <i class="fas fa-film text-5xl text-pink-500 mb-4"></i>
+                    <div class="text-5xl font-bold text-white mb-2 counter" data-target="25">35+</div>
+                    <div class="text-gray-300 font-semibold accent-font">Films & Projects</div>
+                </div>
+
+                <div class="text-center bg-black bg-opacity-50 p-8 rounded-2xl backdrop-blur-lg border border-purple-500 hover-lift"
+                    data-aos="flip-up" data-aos-delay="300">
+                    <i class="fas fa-users text-5xl text-purple-500 mb-4"></i>
+                    <div class="text-5xl font-bold text-white mb-2 counter" data-target="10">10</div>
+                    <div class="text-gray-300 font-semibold accent-font">Major Events</div>
+                </div>
+
+                <div class="text-center bg-black bg-opacity-50 p-8 rounded-2xl backdrop-blur-lg border border-red-500 hover-lift"
+                    data-aos="flip-up" data-aos-delay="400">
+                    <i class="fas fa-heart text-5xl text-red-500 mb-4"></i>
+                    <div class="text-5xl font-bold text-white mb-2 counter" data-target="12">12</div>
+                    <div class="text-gray-300 font-semibold accent-font">Years Active</div>
+                </div>
+            </div>
+
+            <!-- Awards Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                <div class="bg-gradient-to-br from-yellow-600 to-yellow-800 p-8 rounded-2xl shadow-2xl hover-lift"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-6xl mb-4">🏆</div>
+                    <h3 class="text-2xl font-bold mb-2 text-white heading-font">
+                        Rajya Kala Parishad Award
+                    </h3>
+                    <p class="text-gray-100 text-sm">
+                        Honoured for excellence in acting & classical dance (Odissi)
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-pink-600 to-pink-800 p-8 rounded-2xl shadow-2xl hover-lift"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-6xl mb-4">⭐</div>
+                    <h3 class="text-2xl font-bold mb-2 text-white heading-font">
+                        Youth Icon Award
+                    </h3>
+                    <p class="text-gray-100 text-sm">
+                        Arambh Awards – 2021 & 2023
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-600 to-purple-800 p-8 rounded-2xl shadow-2xl hover-lift"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-6xl mb-4">🎭</div>
+                    <h3 class="text-2xl font-bold mb-2 text-white heading-font">
+                        Best Actress
+                    </h3>
+                    <p class="text-gray-100 text-sm">
+                        OFATA Awards & Adikabi Sarala Das Sanman – 2023
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-600 to-red-800 p-8 rounded-2xl shadow-2xl hover-lift"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-6xl mb-4">👑</div>
+                    <h3 class="text-2xl font-bold mb-2 text-white heading-font">
+                        Reality Show Winner
+                    </h3>
+                    <p class="text-gray-100 text-sm">
+                        Mitha Mitha Jodi – Winner & Best Performer
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Social Media Section -->
+    <section id="social" class="py-20 bg-black">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold heading-font mb-6" data-aos="zoom-in">
+                <span class="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                    Connect With Me
+                </span>
+            </h2>
+            <p class="text-gray-400 text-lg mb-12 accent-font">FOLLOW MY JOURNEY</p>
+
+            <div class="flex flex-wrap justify-center gap-6">
+
+                <a href="https://www.instagram.com/ankitadash.official" class="group w-64 flex flex-col items-center text-center
+        bg-gradient-to-br from-pink-600 to-purple-600 p-8 rounded-3xl hover-lift shadow-xl" data-aos="flip-left"
+                    data-aos-delay="100">
+                    <i class="fab fa-instagram text-6xl text-white mb-4"></i>
+                    <div class="text-white font-bold text-xl heading-font">Instagram</div>
+                    <div class="text-gray-200 text-sm">@stellaphoenix</div>
+                </a>
+
+                <a href="https://www.youtube.com/@ankitadash.officia" class="group w-64 flex flex-col items-center text-center
+        bg-gradient-to-br from-red-600 to-red-800 p-8 rounded-3xl hover-lift shadow-xl" data-aos="flip-left"
+                    data-aos-delay="200">
+                    <i class="fab fa-youtube text-6xl text-white mb-4"></i>
+                    <div class="text-white font-bold text-xl heading-font">YouTube</div>
+                    <div class="text-gray-200 text-sm">Ankita Das</div>
+                </a>
+
+                <a href="mailto:ankitadashpinks@gmail.com" class="group w-64 flex flex-col items-center text-center
+        bg-gradient-to-br from-red-500 to-red-700 p-8 rounded-3xl hover-lift shadow-xl" data-aos="flip-left"
+                    data-aos-delay="300">
+                    <i class="fas fa-envelope text-6xl text-white mb-4"></i>
+                    <div class="text-white font-bold text-xl heading-font">Gmail</div>
+                    <div class="text-gray-200 text-[12px] break-all">ankitadashpinks@gmail.com</div>
+                </a>
+
+                <a href="https://www.imdb.com/" target="_blank" class="group w-64 flex flex-col items-center text-center
+        bg-gradient-to-br from-yellow-500 to-yellow-700 p-8 rounded-3xl hover-lift shadow-xl" data-aos="flip-left"
+                    data-aos-delay="400">
+                    <i class="fab fa-imdb text-6xl text-white mb-4"></i>
+                    <div class="text-white font-bold text-xl heading-font">IMDb</div>
+                    <div class="text-gray-200 text-sm">Ankita Dash on IMDb</div>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold heading-font mb-2">
+                        <span
+                            class="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                            Ankita Das
+                        </span>
+                    </h3>
+                    <p class="text-gray-400">Living the dream, inspiring the world</p>
+                </div>
+
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/ankitadash.official" target="_blank"
+                        class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@ankitadash.officia" target="_blank"
+                        class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                    <!-- Gmail -->
+                    <a href="mailto:ankitadashpinks@gmail.com"
+                        class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+
+                    <!-- IMDb -->
+                    <a href="https://www.imdb.com/" target="_blank"
+                        class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                        <i class="fab fa-imdb"></i>
+                    </a>
+                </div>
+
+
+                <div class="text-gray-400 text-center md:text-right">
+                    <p>&copy; 2026 Ankita Das. All rights reserved.</p>
+                    <p class="text-sm mt-1">Designed with ❤️ by Spider Innovative</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Added Swiper.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Added AOS (Animate On Scroll) JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+
+
+        const gallerySwiper = new Swiper('.gallerySwiper', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Gallery Modal
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const modal = document.getElementById('galleryModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                modal.classList.add('active');
+                modalImage.src = item.src;
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Animated Counter
+        const counters = document.querySelectorAll('.counter');
+        let counterAnimated = false;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                updateCounter();
+            });
+        };
+
+        // Trigger counter animation when achievements section is in view
+        const achievementsSection = document.getElementById('awards'); // Changed from 'achievements' to 'awards'
+
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !counterAnimated) {
+                    animateCounters();
+                    counterAnimated = true;
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(achievementsSection);
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.classList.remove('hidden', 'bg-green-500', 'bg-red-500');
+
+            if (type === 'success') {
+                formMessage.classList.add('bg-green-500', 'text-white');
+            } else {
+                formMessage.classList.add('bg-red-500', 'text-white');
+            }
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Add animation to elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.fade-in-up');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            elements.forEach(el => {
+                observer.observe(el);
+            });
+        };
+
+
+        var musicSwiper = new Swiper(".musicSwiper", {
+            loop: true,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".music-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".music-next",
+                prevEl: ".music-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        const heroSwiper = new Swiper('.heroSwiper', {
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            effect: 'fade',
+        });
+
+
+        animateOnScroll();
+    </script>
+
+</body>
+
+</html>
